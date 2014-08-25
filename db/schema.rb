@@ -11,9 +11,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140825234207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "empresas", force: true do |t|
+    t.string   "nome"
+    t.string   "cnpj"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "funcionario_turnos", force: true do |t|
+    t.integer  "turno_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "funcionario_id"
+  end
+
+  add_index "funcionario_turnos", ["funcionario_id"], name: "index_funcionario_turnos_on_funcionario_id", using: :btree
+  add_index "funcionario_turnos", ["turno_id"], name: "index_funcionario_turnos_on_turno_id", using: :btree
+
+  create_table "funcionarios", force: true do |t|
+    t.string   "nome"
+    t.string   "cpf"
+    t.string   "rg"
+    t.string   "data_nascimento"
+    t.string   "identificacao"
+    t.integer  "empresa_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "funcionarios", ["empresa_id"], name: "index_funcionarios_on_empresa_id", using: :btree
+
+  create_table "registros", force: true do |t|
+    t.date     "data_hora"
+    t.string   "tipo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "funcionario_id"
+  end
+
+  add_index "registros", ["funcionario_id"], name: "index_registros_on_funcionario_id", using: :btree
+
+  create_table "turnos", force: true do |t|
+    t.time     "horario_entrada"
+    t.time     "horario_saida"
+    t.string   "periodo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "empresa_id"
+  end
+
+  add_index "turnos", ["empresa_id"], name: "index_turnos_on_empresa_id", using: :btree
+
+  create_table "usuarios", force: true do |t|
+    t.string   "nome"
+    t.string   "cpf"
+    t.string   "rg"
+    t.string   "data_nascimento"
+    t.string   "identificacao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "empresa_id"
+  end
+
+  add_index "usuarios", ["empresa_id"], name: "index_usuarios_on_empresa_id", using: :btree
 
 end
