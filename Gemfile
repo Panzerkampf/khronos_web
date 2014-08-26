@@ -7,7 +7,6 @@ gem 'secure_headers',         '1.2.0'
 gem 'jquery-rails',           '3.1.1'
 gem 'turbolinks',             '2.2.2'
 gem 'jbuilder',               '2.1.1'
-gem 'slim-rails',             '2.1.5'
 gem 'pg',                     '0.17.1'
 gem 'sass-rails',             '4.0.3'
 gem 'coffee-rails',           '4.0.1'
@@ -22,6 +21,8 @@ gem 'rails_admin'
 gem 'devise'
 gem 'brazilian-rails'
 gem "cnpj_validator"
+gem "haml"
+gem "twitter-bootstrap-rails"
 
 group :production, :staging do
   gem 'rails_12factor',       '0.0.2'
